@@ -6,7 +6,6 @@ const searchMovieForm = document.querySelector("#searchForm");
         fetchMovieData(search.value)
 })
 
-
 const fetchMovieData=async(search)=>{
     try{
         const response = await fetch(`http://www.omdbapi.com/?s=${search}&apikey=afe11847`);
@@ -17,17 +16,14 @@ const fetchMovieData=async(search)=>{
         
     } 
 };
-
 const cloneMovieData=(movies)=>{ 
     const movieParent=document.querySelector(".cards-parent");
     const movieTemplate=document.querySelector("#movie-card-template");
-    movieParent.innerHTML="";
+
+    // movieParent.innerHTML="";
     
     movies.map((movie)=>{
-        if (movie.Poster==="N/A") return;
-        // if (movie.Title==="N/A") return;
-        // if (movie.Year==="N/A") return;
-        // if (movie.Type==="N/A") return;
+        if (!movie.Poster) return;
         const cardClone=movieTemplate.content.cloneNode(true);//for deep cloning node
         makeCard(cardClone, movie);
         movieParent.appendChild(cardClone);
@@ -36,10 +32,11 @@ const cloneMovieData=(movies)=>{
 
 const makeCard=(cardClone,movie)=>{
     console.log(movie);
-    const cardImg=cardClone.querySelector("img");
-    const cardTitle=cardClone.querySelector("h2 span");
-    const cardYear=cardClone.querySelector("h3 span");
-    const cardMovieType=cardClone.querySelector("h4 span");   
+    const cardImg=cardClone.querySelector("#img");
+    const cardTitle=cardClone.querySelector("#title1");
+    const cardYear=cardClone.querySelector("#year1");
+    const cardMovieType=cardClone.querySelector("#type1");   
+    
     cardImg.src = movie.Poster;
     cardTitle.innerHTML = movie.Title;
     cardYear.innerHTML = movie.Year;
