@@ -20,7 +20,7 @@ const cloneMovieData=(movies)=>{
     const movieParent=document.querySelector(".cards-parent");
     const movieTemplate=document.querySelector("#movie-card-template");
 
-    // movieParent.innerHTML="";
+    movieParent.innerHTML="";
     
     movies.map((movie)=>{
         if (!movie.Poster) return;
